@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">日记时刻</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">我的日记时刻</string>
+    <string name="nav_header_subtitle">My Diary Time</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">关于</string>
+</resources>
