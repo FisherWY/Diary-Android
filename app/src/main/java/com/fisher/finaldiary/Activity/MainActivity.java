@@ -1,6 +1,7 @@
-package com.fisher.finaldiary;
+package com.fisher.finaldiary.Activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.fisher.finaldiary.Adapter.DiaryAdapter;
 import com.fisher.finaldiary.DataBase.DiaryModel;
 import com.fisher.finaldiary.DataBase.dbManager;
+import com.fisher.finaldiary.R;
 import org.litepal.LitePal;
 import org.litepal.crud.LitePalSupport;
 
@@ -63,7 +65,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 // 打开写日记页面
-                saveDiary();
+                toWrite();
+//                saveDiary();
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
             }
@@ -132,8 +135,10 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_me) {
             // 刷新日记列表
+            onRefresh();
         } else if (id == R.id.nav_setting) {
             // 跳转到设置界面
+            toSettings();
         } else if (id == R.id.nav_about) {
             // 弹出关于
             showAbout();
@@ -188,6 +193,19 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    // 跳转到设置页面
+    private void toSettings() {
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    // 跳转到写日记界面
+    private void toWrite() {
+        Intent intent = new Intent(MainActivity.this, WriteActivity.class);
+        startActivity(intent);
+    }
+
+    // 加载日记列表
     private void initDiary() {
         dbList = LitePal.findAll(DiaryModel.class);
         adapter = new DiaryAdapter(dbList);

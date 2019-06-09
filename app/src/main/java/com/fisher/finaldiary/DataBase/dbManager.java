@@ -1,9 +1,6 @@
 package com.fisher.finaldiary.DataBase;
 
-import android.database.sqlite.SQLiteDatabase;
-import com.fisher.finaldiary.MainActivity;
 import org.litepal.LitePal;
-import org.litepal.LitePalApplication;
 
 /**
  * @Author Fisher
