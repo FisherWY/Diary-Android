@@ -1,7 +1,9 @@
 package com.fisher.finaldiary.Activity;
 
+import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,6 +26,7 @@ import com.fisher.finaldiary.Adapter.DiaryAdapter;
 import com.fisher.finaldiary.DataBase.DiaryModel;
 import com.fisher.finaldiary.DataBase.dbManager;
 import com.fisher.finaldiary.R;
+import com.fisher.finaldiary.Service.NotificationService;
 import org.litepal.LitePal;
 import org.litepal.crud.LitePalSupport;
 
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity
 
     private DiaryAdapter adapter;
 
+    @TargetApi(Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +94,15 @@ public class MainActivity extends AppCompatActivity
         manager = new LinearLayoutManager(this);
         swipeRefreshLayout.setOnRefreshListener(this);
         initDiary();
+
+        // 加载后台服务
+        Intent serviceIntent = new Intent(this, NotificationService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //android8.0以上通过startForegroundService启动service
+            startForegroundService(serviceIntent);
+        } else {
+            startService(serviceIntent);
+        }
     }
 
     @Override
@@ -159,6 +172,12 @@ public class MainActivity extends AppCompatActivity
         swipeRefreshLayout.setRefreshing(false);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        onRefresh();
+    }
+
     // 弹出关于对话框
     private void showAbout() {
         final AlertDialog.Builder about = new AlertDialog.Builder(this);
@@ -172,25 +191,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
         about.show();
-    }
-
-    // 保存日记
-    private void saveDiary() {
-        DiaryModel model = new DiaryModel();
-        // 统计行数
-        int row = LitePal.count(DiaryModel.class);
-        model.setId(row + 1);
-        model.setTitle("GO SPURS GO");
-        model.setMainText("eeqwdqwqeqw");
-        model.setMood(0);
-        model.setWeather(0);
-        model.setDate(new Date());
-
-        if (model.save()) {
-            Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "保存失败", Toast.LENGTH_SHORT).show();
-        }
     }
 
     // 跳转到设置页面

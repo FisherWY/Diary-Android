@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.fisher.finaldiary">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <application
             android:name="org.litepal.LitePalApplication"
             android:allowBackup="true"
@@ -10,12 +12,31 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".Activity.WriteActivity">
+
+        <!-- 前台通知快捷写日记服务 -->
+        <service
+                android:name=".Service.NotificationService"
+                android:enabled="true"
+                android:exported="true">
+        </service>
+
+        <!-- 静态广播接收，监听系统开机 -->
+        <receiver
+                android:name=".Broadcast.StaticBroadcast"
+                android:enabled="true"
+                android:exported="true">
+        </receiver>
+
+        <activity
+                android:name=".Activity.WriteActivity"
+                android:label="@string/title_activity_write">
         </activity>
+
         <activity
                 android:name=".Activity.SettingsActivity"
                 android:label="@string/title_activity_settings">
         </activity>
+
         <activity
                 android:name=".Activity.MainActivity"
                 android:label="@string/app_name"
@@ -26,6 +47,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
