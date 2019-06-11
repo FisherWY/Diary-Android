@@ -11,7 +11,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 tools:srcCompat="@tools:sample/avatars"
-                android:id="@+id/diaryImage"/>
+                android:id="@+id/diaryImage" android:layout_gravity="center"/>
 
         <TextView
                 android:text="日记标题"

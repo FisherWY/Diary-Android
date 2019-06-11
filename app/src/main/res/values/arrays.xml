@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="mood">
+        <item>高兴</item>
+        <item>伤心</item>
+        <item>爱心</item>
+        <item>调皮</item>
+        <item>生病</item>
+    </string-array>
+</resources>

@@ -2,6 +2,7 @@ package com.fisher.finaldiary.DataBase;
 
 import org.litepal.crud.LitePalSupport;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
  **/
 
 
-public class DiaryModel extends LitePalSupport {
+public class DiaryModel extends LitePalSupport implements Serializable {
     // 日记id
     private int id;
     // 日记题目

@@ -3,14 +3,14 @@ package com.fisher.finaldiary.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.*;
+import com.fisher.finaldiary.Adapter.MoodAdapter;
 import com.fisher.finaldiary.DataBase.DiaryModel;
 import com.fisher.finaldiary.R;
 import org.litepal.LitePal;
 
 import java.util.Date;
+import java.util.List;
 
 public class WriteActivity extends AppCompatActivity {
 
@@ -22,6 +22,12 @@ public class WriteActivity extends AppCompatActivity {
 
     private Button save;
 
+    private Spinner spinner;
+
+    private ImageView imageView;
+
+    private MoodAdapter moodAdapter = new MoodAdapter();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,15 +35,17 @@ public class WriteActivity extends AppCompatActivity {
 
         title = findViewById(R.id.writeTitle);
         text = findViewById(R.id.writeText);
-        cancel = findViewById(R.id.toHome);
+//        cancel = findViewById(R.id.toHome);
         save = findViewById(R.id.Save);
+        spinner = findViewById(R.id.moodSpinner);
+        imageView = findViewById(R.id.moodImage);
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toHome();
-            }
-        });
+//        cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                toHome();
+//            }
+//        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +53,8 @@ public class WriteActivity extends AppCompatActivity {
                 saveDiary();
             }
         });
+
+        initMoodData();
     }
 
     private void toHome() {
@@ -64,7 +74,7 @@ public class WriteActivity extends AppCompatActivity {
         model.setId(row + 1);
         model.setTitle(title.getText().toString());
         model.setMainText(text.getText().toString());
-        model.setMood(0);
+        model.setMood(spinner.getSelectedItemPosition());
         model.setWeather(0);
         model.setDate(new Date());
 
@@ -75,5 +85,21 @@ public class WriteActivity extends AppCompatActivity {
         }
 
         toHome();
+    }
+
+    private void initMoodData() {
+        spinner.setSelection(0);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                imageView.setImageResource(moodAdapter.getResources(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 }

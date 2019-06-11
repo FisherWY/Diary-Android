@@ -6,27 +6,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".Activity.WriteActivity">
+        tools:context=".Activity.ViewActivity">
 
-    <EditText
-            android:id="@+id/writeTitle"
+    <TextView
+            android:id="@+id/viewTitle"
             android:layout_width="match_parent"
             android:layout_height="70sp"
             android:textAlignment="center"
             android:textSize="36sp"
             android:textStyle="bold"
-            android:layout_marginTop="10sp"
-            android:hint="日记标题"/>
+            android:layout_marginTop="10sp"/>
 
-    <EditText
-            android:id="@+id/writeText"
+    <TextView
+            android:id="@+id/viewText"
             android:layout_width="match_parent"
             android:layout_height="450sp"
             android:textSize="18sp"
             android:layout_marginLeft="10sp"
             android:layout_marginRight="10sp"
             android:layout_marginTop="10sp"
-            android:hint="日记正文"
             android:textAlignment="textStart"
             android:gravity="start|left"/>
 
@@ -36,36 +34,20 @@
             android:orientation="horizontal"
             android:visibility="visible">
 
-<!--        <Button-->
-<!--                android:id="@+id/toHome"-->
-<!--                android:layout_width="40sp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text="返回"-->
-<!--                android:textAlignment="center"-->
-<!--                android:layout_marginLeft="0sp"/>-->
-
         <ImageView
-                android:id="@+id/moodImage"
+                android:id="@+id/viewMoodImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10sp"
+                android:layout_marginLeft="40sp"
                 android:src="@drawable/mood_happy"/>
 
-        <Spinner
-                android:id="@+id/moodSpinner"
-                android:entries="@array/mood"
-                android:layout_width="150sp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5sp"
-                android:spinnerMode="dropdown"/>
-
         <Button
-                android:id="@+id/Save"
+                android:id="@+id/viewDelete"
                 android:layout_width="150sp"
                 android:layout_height="match_parent"
-                android:text="保存日记"
+                android:text="删除日记"
                 android:textAlignment="center"
-                android:layout_marginLeft="20sp"/>
+                android:layout_marginLeft="100sp"/>
 
     </LinearLayout>
 
