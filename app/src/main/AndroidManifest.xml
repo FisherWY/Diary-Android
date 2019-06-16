@@ -12,20 +12,31 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ViewActivity">
-        </activity>
+        <!-- Content Provider 提供日记增删改查功能 -->
+        <provider
+                android:name=".Provider.DiaryProvider"
+                android:authorities="com.fisher.finaldiary"
+                android:enabled="true"
+                android:exported="true">
+        </provider>
+
         <!-- 前台通知快捷写日记服务 -->
         <service
                 android:name=".Service.NotificationService"
                 android:enabled="true"
                 android:exported="true">
-        </service> <!-- 静态广播接收，监听系统开机 -->
+        </service>
+        <!-- 静态广播接收，监听系统开机 -->
         <receiver
                 android:name=".Broadcast.StaticBroadcast"
                 android:enabled="true"
                 android:exported="true">
         </receiver>
 
+        <activity
+                android:name=".Activity.ViewActivity"
+                android:label="看日记">
+        </activity>
         <activity
                 android:name=".Activity.WriteActivity"
                 android:label="@string/title_activity_write">

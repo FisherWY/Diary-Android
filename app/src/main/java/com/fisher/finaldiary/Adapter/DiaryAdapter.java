@@ -16,12 +16,6 @@ import com.fisher.finaldiary.R;
 
 import java.util.List;
 
-/**
- * @Author Fisher
- * @Date 2019/6/5 21:40
- **/
-
-
 public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> {
 
     private List<DiaryModel> list;

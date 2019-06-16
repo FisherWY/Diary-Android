@@ -5,12 +5,6 @@ import org.litepal.crud.LitePalSupport;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @Author Fisher
- * @Date 2019/6/5 11:21
- **/
-
-
 public class DiaryModel extends LitePalSupport implements Serializable {
     // 日记id
     private int id;
